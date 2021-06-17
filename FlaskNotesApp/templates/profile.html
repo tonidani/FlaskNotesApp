@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<h2>Profile Page</h2>
+<div>
+    <p>Your account details are below:</p>
+	 <a href="{{ url_for('home') }}"><i class="fas fa-home"></i></a>
+	 <a href="{{ url_for('profile') }}"><i class="fas fa-user-circle"></i></a>
+	<a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i></a>
+    <table>
+        <tr>
+            <td>Username:</td>
+            <td>{{ account[1] }}</td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td>{{ account[2] }}</td>
+		</tr>
+		<tr>
+		<td>
+		<form action="/profile/change/{{ account[0] }}" method="post" autocomplete="off"></td>
+			<td><input type="password" name="password_change"value="New Password"/>
+			<input type="submit" value="Change Password"/></td>
+		</tr>
+        <tr>
+            <td>Email:</td>
+            <td>{{ account[3] }}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

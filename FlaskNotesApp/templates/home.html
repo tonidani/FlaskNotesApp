@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>Home Page</h2>
+<p>Welcome back, {{ username }}! {{ msg }}</p>
+	<a href="{{ url_for('home') }}"><i class="fas fa-home"></i></a>
+	<a href="{{ url_for('profile') }}"><i class="fas fa-user-circle"></i></a>
+	<a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i></a>
+{% for item in notes %}
+<h3>{{ item[2] }}</h3>
+<p>{{ item[3]}} <br /><br />
+<form action="/home/delete/{{item[0]}}" method="post" autocomplete="off">
+	<input type="submit" id="delete_note" value="Delete" name="delete_note"/>
+</form>
+
+
+{% endfor %}
+<div>
+<h2>Add note</h2>
+<form action="/home/add" method="post" autocomplete="off">
+				<label for="Note Title">
+					<i class="fas fa-signature"></i>
+				</label>
+				<input type="text" name="note_title" placeholder="Title" id="note_title" required>
+				<br /><br />
+				<label for="note_txt">
+					<i class="fas fa-book"></i>
+				</label>
+				<textarea  rows="10" type="text" name="note_text" placeholder="Note" id="note_text" required>
+				</textarea>
+				<div class="msg">{{ msg }}</div>
+				<br>
+				<input type="submit" value="Add note">
+			</form>
+</div>
+			{% endblock %}
